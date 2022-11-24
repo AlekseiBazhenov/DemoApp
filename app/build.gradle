@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk project.COMPILE_SDK_VERSION
+
+    defaultConfig {
+        applicationId "uz.ucell.app"
+        minSdk project.MIN_SDK_VERSION
+        targetSdk project.TARGET_SDK_VERSION
+        versionCode 2
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        all {
+            buildConfigField "String", "APP_CENTER_APP_SECRET_KEY", ""
+        }
+        debug {
+            buildConfigField "String", "APP_METRICA_API_KEY", ""
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "APP_METRICA_API_KEY", ""
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+preBuild.dependsOn ktlintCheck
+check.dependsOn ktlintCheck
+
+dependencies {
+
+    implementation libs.appcompat
+
+    implementation libs.navigation
+    implementation libs.navigation.ui
+
+    implementation libs.bundles.appcenter
+
+    implementation libs.appmetrica
+
+    implementation libs.hilt
+    kapt libs.hilt.compiler
+
+    implementation libs.splash.screen
+
+    implementation project(':core-storage')
+    implementation project(':core')
+    implementation project(':navigation')
+    implementation project(':feature-authorization')
+    implementation project(':feature-select-language')
+    implementation project(':feature-my-tariff')
+    implementation project(':feature-initialization')
+    implementation project(':debugpanel')
+    implementation project(':smsretriever-consent')
+    implementation project(':networking')
+    implementation project(':feature-otp')
+    implementation project(':feature-credentials')
+    implementation project(':ui-kit')
+    implementation project(':feature-main-screen')
+    implementation project(':feature-refill-balance')
+    implementation project(':utils')
+    implementation project(':appmetrica')
+
+    testImplementation testLibs.junit
+    androidTestImplementation testLibs.junit.ext
+    androidTestImplementation testLibs.espresso
+}

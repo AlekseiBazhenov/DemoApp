@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="rich_purple">#7220A3</color>
+    <color name="soft_purple">#F6F1FF</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="base_black">#333333</color>
+
+    <color name="sky0">#F5F7FA</color>
+    <color name="sky1">#EDEDED</color>
+    <color name="sky2">#D8D8D8</color>
+    <color name="sky3">#999999</color>
+
+    <color name="fury">#F62434</color>
+    <color name="warm_red">#EB5A40</color>
+    <color name="fury_50">#80F62434</color>
+
+    <color name="error">#7DEB5A40</color>
+    <color name="warning">#F9C200</color>
+    <color name="warning_50">#80F9C200</color>
+    <color name="success">#7D0CFFA7</color>
+
+    <color name="fresh_turquoise">#00B48C</color>
+    <color name="fresh_turquoise_50">#8000B48C</color>
+    <color name="light_secondary_137c">#FFA717</color>
+    <color name="soft_137c">#FFF5D0</color>
+    <color name="secondary_311c">#3DD1C8</color>
+    <color name="soft_green">#D4FFF6</color>
+
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+</resources>

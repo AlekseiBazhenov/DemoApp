@@ -1,0 +1,116 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+    versionCatalogs {
+        libs {
+            version('appcenter', '4.4.5')
+            version('navigation', '2.5.0')
+            version('lifecycle', '2.5.0')
+            version('hilt', '2.42')
+            version('compose', '1.2.1')
+            version('datastoreVer', '1.0.0')
+            version('retrofit', '2.9.0')
+            version('okhttp', '4.10.0')
+
+            library('appcompat', 'androidx.appcompat:appcompat:1.4.2')
+            library('core-ktx', 'androidx.core:core-ktx:1.8.0')
+
+            // Architecture
+            library('lifecycle-viewmodel', 'androidx.lifecycle', 'lifecycle-viewmodel-ktx').versionRef('lifecycle')
+            library('lifecycle-viewmodel-compose', 'androidx.lifecycle', 'lifecycle-viewmodel-compose').versionRef('lifecycle')
+            library('orbit-mvi', 'org.orbit-mvi:orbit-viewmodel:4.3.2')
+
+            // Navigation
+            library('navigation', 'androidx.navigation', 'navigation-fragment-ktx').versionRef('navigation')
+            library('navigation-ui', 'androidx.navigation', 'navigation-ui-ktx').versionRef('navigation')
+
+            // DI
+            library('hilt', 'com.google.dagger', 'hilt-android').versionRef('hilt')
+            library('hilt-compiler', 'com.google.dagger', 'hilt-compiler').versionRef('hilt')
+
+            bundle('feature', ['lifecycle-viewmodel', 'lifecycle-viewmodel-compose', 'orbit-mvi', 'navigation', 'navigation-ui', 'hilt'])
+
+            // Network
+            library('retrofit', 'com.squareup.retrofit2', 'retrofit').versionRef('retrofit')
+            library('gson', 'com.squareup.retrofit2', 'converter-gson').versionRef('retrofit')
+            library('okhttp', 'com.squareup.okhttp3', 'okhttp').versionRef('okhttp')
+            library('logging-interceptor', 'com.squareup.okhttp3', 'logging-interceptor').versionRef('okhttp')
+            library('coroutines', 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4')
+
+            bundle('network', ['retrofit', 'gson', 'okhttp', 'logging-interceptor', 'coroutines'])
+
+            //Preferences DataStore
+            library('datastore', 'androidx.datastore', 'datastore-preferences').versionRef('datastoreVer')
+
+            //AppCenter
+            library('appcenter-analytics', 'com.microsoft.appcenter', 'appcenter-analytics').versionRef('appcenter')
+            library('appcenter-crashes', 'com.microsoft.appcenter', 'appcenter-crashes').versionRef('appcenter')
+
+            bundle('appcenter', ['appcenter-analytics', 'appcenter-crashes'])
+
+            library('compose-ui', 'androidx.compose.ui', 'ui').versionRef('compose')
+            library('compose-ui-tooling', 'androidx.compose.ui', 'ui-tooling').versionRef('compose')
+            library('compose-tooling-preview', 'androidx.compose.ui', 'ui-tooling-preview').versionRef('compose')
+            library('compose-foundation', 'androidx.compose.foundation', 'foundation').versionRef('compose')
+            library('compose-material', 'androidx.compose.material', 'material').versionRef('compose')
+            library('activity-compose', 'androidx.activity:activity-compose:1.5.1')
+
+            bundle('compose', ['compose-ui', 'compose-ui-tooling', 'compose-tooling-preview', 'compose-foundation', 'compose-material', 'activity-compose'])
+
+            library('lottie-compose', 'com.airbnb.android:lottie-compose:5.2.0')
+            library('compose-html', 'com.github.ireward:compose-html:1.0.2')
+            library('compose-placeholder', 'com.google.accompanist:accompanist-placeholder-material:0.26.2-beta')
+
+            library('biomentric', 'androidx.biometric:biometric:1.2.0-alpha04')
+
+            library('splash-screen', 'androidx.core:core-splashscreen:1.0.0')
+
+            library('playservices-auth', 'com.google.android.gms:play-services-auth:20.2.0')
+            library('playservices-auth-api', 'com.google.android.gms:play-services-auth-api-phone:18.0.1')
+
+            //AppMetrica [https://appmetrica.yandex.ru/about]
+            library('appmetrica', 'com.yandex.android:mobmetricalib:5.0.1')
+        }
+
+        testLibs {
+            library('junit', 'junit:junit:4.13.2')
+            library('junit-ext', 'androidx.test.ext:junit:1.1.3')
+            library('espresso', 'androidx.test.espresso:espresso-core:3.4.0')
+            library('mokito', 'org.mockito.kotlin:mockito-kotlin:4.0.0')
+            library('mockk', 'io.mockk:mockk:1.9.3')
+            library('coroutinesTest', 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4')
+        }
+    }
+}
+rootProject.name = "Ucell"
+include ':app'
+include ':core'
+include ':core-storage'
+include ':resources'
+include ':feature-select-language'
+include ':feature-authorization'
+include ':navigation'
+include ':networking-storage'
+include ':networking'
+include ':debugpanel'
+include ':feature-my-tariff'
+include ':feature-initialization'
+include ':smsretriever-consent'
+include ':feature-otp'
+include ':feature-credentials'
+include ':ui-kit'
+include ':feature-main-screen'
+include ':feature-refill-balance'
+include ':utils'
+include ':appmetrica'

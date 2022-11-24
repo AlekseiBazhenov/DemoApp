@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk project.COMPILE_SDK_VERSION
+
+    defaultConfig {
+        minSdk project.MIN_SDK_VERSION
+        targetSdk project.TARGET_SDK_VERSION
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        all {
+            buildConfigField("String", "BASE_URL", "")
+        }
+        release {
+            buildConfigField("String", "DEVELOPMENT_TOKEN", "")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField("String", "DEVELOPMENT_TOKEN", "")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation project(":networking-storage")
+    implementation project(":resources")
+
+    implementation libs.core.ktx
+    
+    implementation libs.bundles.network
+
+    implementation libs.hilt
+    kapt libs.hilt.compiler
+
+    testImplementation testLibs.junit
+    androidTestImplementation testLibs.junit.ext
+    androidTestImplementation testLibs.espresso
+
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+}

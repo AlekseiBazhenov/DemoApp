@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/initializationFragment">
+
+    <action
+        android:id="@+id/action_global_debugpanel"
+        app:destination="@id/debugpanel"
+        app:popUpToSaveState="true" />
+
+    <action
+        android:id="@+id/action_global_show_fullscreen_error"
+        app:destination="@id/fullscreen_error" />
+
+    <fragment
+        android:id="@+id/initializationFragment"
+        android:name="uz.ucell.feature_initialization.InitializationFragment">
+
+        <action
+            android:id="@+id/toSelectLanguage"
+            app:destination="@id/selectLanguageFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpTo="@id/initializationFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/toPinAuth"
+            app:destination="@id/pinAuthFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpTo="@id/initializationFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/toEnterPhoneNumber"
+            app:destination="@id/enterPhoneFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpTo="@id/initializationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/selectLanguageFragment"
+        android:name="uz.ucell.feature_select_language.SelectLanguageFragment">
+
+        <action
+            android:id="@+id/toEnterPhoneNumber"
+            app:destination="@id/enterPhoneFragment"
+            app:popUpTo="@id/selectLanguageFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/enterPhoneFragment"
+        android:name="uz.ucell.feature_otp.enter_phone.EnterPhoneFragment">
+
+        <action
+            android:id="@+id/toSmsCode"
+            app:destination="@id/smsCodeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/smsCodeFragment"
+        android:name="uz.ucell.feature_otp.sms.SmsCodeFragment">
+
+        <argument
+            android:name="phone_number"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="timeout"
+            android:defaultValue="0L"
+            app:argType="long" />
+
+        <argument
+            android:name="show_captcha"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/toPinCode"
+            app:destination="@id/pinCreationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pinCreationFragment"
+        android:name="uz.ucell.feature_credentials.pin_create.PinCreationFragment">
+
+        <action
+            android:id="@+id/toPinConfirmation"
+            app:destination="@id/pinConfirmationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pinConfirmationFragment"
+        android:name="uz.ucell.feature_credentials.pin_confirm.PinConfirmationFragment">
+
+        <argument
+            android:name="code"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/toMainScreen"
+            app:destination="@id/mainPageFragment"
+            app:popUpTo="@id/pinConfirmationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/debugpanel"
+        android:name="uz.ucell.debugpanel.presentation.DebugPanelFragment" >
+
+        <action
+            android:id="@+id/toNetworkLogsPanel"
+            app:destination="@id/logsPanelFragment"
+            app:popUpToSaveState="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fullscreen_error"
+        android:name="uz.ucell.core.dialogs.FullScreenDialogFragment">
+
+        <argument
+            android:name="is_error"
+            android:defaultValue="true"
+            app:argType="boolean" />
+
+        <argument
+            android:name="title"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="message"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="button"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/pinAuthFragment"
+        android:name="uz.ucell.feature_authorization.pin_auth.AuthFragment">
+
+        <action
+            android:id="@+id/toMainScreen"
+            app:destination="@id/mainPageFragment"
+            app:popUpTo="@id/pinAuthFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/toEnterPhoneNumber"
+            app:destination="@id/enterPhoneFragment"
+            app:popUpTo="@id/pinAuthFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="uz.ucell.feature_main_screen.MainScreenFragment">
+
+        <action
+            android:id="@+id/toMyTariff"
+            app:destination="@id/myTariffFragment" />
+
+        <action
+            android:id="@+id/toRefillBalance"
+            app:destination="@id/refillBalanceFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/myTariffFragment"
+        android:name="uz.ucell.feature_my_tariff.my_tariff.MyTariffFragment">
+
+        <action
+            android:id="@+id/toTariffList"
+            app:destination="@id/tariffListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tariffListFragment"
+        android:name="uz.ucell.feature_my_tariff.tariff_list.TariffListFragment" />
+
+    <fragment
+        android:id="@+id/refillBalanceFragment"
+        android:name="uz.ucell.feature_refill_balance.RefillBalanceFragment">
+
+        <action
+            android:id="@+id/toSuccessPayment"
+            app:destination="@id/successPaymentFragment"
+            app:popUpTo="@id/refillBalanceFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/logsPanelFragment"
+        android:name="uz.ucell.debugpanel.logging_panel.NetworkLogsFragment"
+        android:label="ErrorPanelFragment"/>
+
+    <fragment
+        android:id="@+id/successPaymentFragment"
+        android:name="uz.ucell.feature_refill_balance.success_payment.SuccessPaymentFragment"
+        android:label="SuccessPaymentFragment">
+
+        <argument
+            android:name="receipt_id"
+            app:argType="string" />
+
+        <argument
+            android:name="receipt_amount"
+            app:argType="string" />
+
+        <argument
+            android:name="receipt_commission"
+            app:argType="string" />
+
+        <argument
+            android:name="receipt_pay_date"
+            app:argType="string" />
+
+        <argument
+            android:name="receipt_card_info"
+            app:argType="string" />
+
+        <argument
+            android:name="receipt_account"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>

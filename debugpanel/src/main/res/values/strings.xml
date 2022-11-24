@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_host">Host</string>
+    <string name="label_device_id">Device ID</string>
+    <string name="label_user_agent">User Agent</string>
+    <string name="label_msisdn">MSISDN</string>
+    <string name="btn_clear_tokens">Remove tokens</string>
+    <string name="btn_save">Save</string>
+    <string name="label_network_logging">Enable network logging</string>
+    <string name="btn_open_network_logs">Network logs</string>
+    <string name="dev_token">Developer`s token</string>
+</resources>
